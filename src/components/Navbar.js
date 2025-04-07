@@ -110,12 +110,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden lg:flex space-x-4 lg:space-x-8"> {/* Change 'md:flex' to 'lg:flex' */}
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`text-primary hover:text-accent font-medium transition-colors ${isActiveNavItem(item.section)
+                className={`text-primary hover:text-accent font-medium transition-colors text-sm lg:text-base ${isActiveNavItem(item.section)
                   ? 'border-b-2 border-accent'
                   : ''
                   }`}
@@ -126,17 +126,17 @@ const Navbar = () => {
           </div>
 
           {/* Join Now Button (Desktop) */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link
               to="/contact"
-              className="btn btn-primary"
+              className="btn btn-primary whitespace-nowrap text-sm lg:text-base"
             >
               Join Now
             </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={toggleMenu}
               className="text-primary p-2 focus:outline-none"

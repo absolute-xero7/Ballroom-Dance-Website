@@ -3,14 +3,15 @@ import { motion } from 'framer-motion';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    danceExperience: 'beginner',
+    fullName: '',
+    year: '',
+    preFirstName: '',
+    danceExperience: '',
+    uoftEmail: '',
     howHeard: '',
-    comments: '',
-    agreeToTerms: false
+    partner: '',
+    questions: '',
+    instagram: ''
   });
 
   const [formStatus, setFormStatus] = useState({
@@ -24,21 +25,13 @@ const SignupForm = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
+    if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required';
+    if (!formData.year.trim()) newErrors.year = 'Year of study is required';
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
-    }
-
-    if (formData.phone && !/^\d{10}$/i.test(formData.phone.replace(/[^\d]/g, ''))) {
-      newErrors.phone = 'Invalid phone number';
-    }
-
-    if (!formData.agreeToTerms) {
-      newErrors.agreeToTerms = 'You must agree to the terms';
+    if (!formData.uoftEmail.trim()) {
+      newErrors.uoftEmail = 'UofT email is required';
+    } else if (!/^[A-Z0-9._%+-]+@mail\.utoronto\.ca$/i.test(formData.uoftEmail)) {
+      newErrors.uoftEmail = 'Please enter a valid UofT email address';
     }
 
     setErrors(newErrors);
@@ -65,23 +58,74 @@ const SignupForm = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Simulate form submission
-      setFormStatus({ submitted: true, error: false, message: 'Thank you for signing up! We will contact you shortly.' });
+      setFormStatus({ submitted: false, error: false, message: 'Submitting...' });
 
-      // In a real application, you would send the data to your backend here
-      console.log('Form data submitted:', formData);
+      // Google Form ID from your form URL (replace with your actual form ID)
+      const formId = '1FAIpQLSd05ibTnjPxDtkrp0h8nHMtBLyCzsMQhw5n2RBTLdd9lVq3ZQ';
+
+      // Create form data object with Google Form field IDs
+      const googleFormData = new FormData();
+      googleFormData.append('entry.1951851101', formData.fullName); // Example entry ID
+      googleFormData.append('entry.22590857', formData.year);  // Replace with your actual entry IDs
+      googleFormData.append('entry.1541195092', formData.preFirstName);
+      googleFormData.append('entry.751747774', formData.danceExperience);
+      googleFormData.append('entry.684069553', formData.uoftEmail);
+      googleFormData.append('entry.1971980529', formData.howHeard);
+      googleFormData.append('entry.108817508', formData.partner);
+      googleFormData.append('entry.308878977', formData.questions);
+      googleFormData.append('entry.984202028', formData.instagram);
+
+      // Google Form submission URL
+      const googleFormUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
+
+      // Create a hidden iframe for submission (works around CORS issues)
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('style', 'display: none');
+      document.body.appendChild(iframe);
+
+      // Create a form inside the iframe
+      const iframeDocument = iframe.contentWindow.document;
+      const iframeForm = iframeDocument.createElement('form');
+      iframeForm.method = 'POST';
+      iframeForm.action = googleFormUrl;
+      iframeDocument.body.appendChild(iframeForm);
+
+      // Add form data to the iframe form
+      for (const [key, value] of googleFormData.entries()) {
+        const input = iframeDocument.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        iframeForm.appendChild(input);
+      }
+
+      // Submit the form
+      iframeForm.submit();
+
+      // Show success message and reset form
+      setFormStatus({
+        submitted: true,
+        error: false,
+        message: 'Thank you for signing up! We will contact you shortly.'
+      });
 
       // Reset form after successful submission
       setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        danceExperience: 'beginner',
+        fullName: '',
+        year: '',
+        preFirstName: '',
+        danceExperience: '',
+        uoftEmail: '',
         howHeard: '',
-        comments: '',
-        agreeToTerms: false
+        partner: '',
+        questions: '',
+        instagram: ''
       });
+
+      // Remove the iframe after submission
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+      }, 1000);
     } else {
       setFormStatus({
         submitted: false,
@@ -154,80 +198,70 @@ const SignupForm = () => {
             viewport={{ once: true }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Full Name */}
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-primary mb-1">
-                  First Name <span className="text-red-500">*</span>
+                <label htmlFor="fullName" className="block text-sm font-medium text-primary mb-1">
+                  Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
+                  id="fullName"
+                  name="fullName"
+                  value={formData.fullName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.fullName ? 'border-red-500' : 'border-gray-300'
                     }`}
                 />
-                {errors.firstName && (
-                  <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+                {errors.fullName && (
+                  <p className="mt-1 text-xs text-red-500">{errors.fullName}</p>
                 )}
               </div>
 
+              {/* Year of Study */}
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-primary mb-1">
-                  Last Name <span className="text-red-500">*</span>
+                <label htmlFor="year" className="block text-sm font-medium text-primary mb-1">
+                  Year of Study <span className="text-red-500">*</span>
+                </label>
+                <select
+                  id="year"
+                  name="year"
+                  value={formData.year}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.year ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                >
+                  <option value="">Please select</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                  <option value="5+">5+ Year</option>
+                  <option value="graduate">Graduate Student</option>
+                  <option value="alumni">Alumni</option>
+                  <option value="other">Other</option>
+                </select>
+                {errors.year && (
+                  <p className="mt-1 text-xs text-red-500">{errors.year}</p>
+                )}
+              </div>
+
+              {/* Preferred First Name */}
+              <div>
+                <label htmlFor="preFirstName" className="block text-sm font-medium text-primary mb-1">
+                  Preferred First Name
                 </label>
                 <input
                   type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="preFirstName"
+                  name="preFirstName"
+                  value={formData.preFirstName}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.lastName ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 />
-                {errors.lastName && (
-                  <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
-                )}
               </div>
 
+              {/* Dance Experience */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-primary mb-1">
-                  Email <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-xs text-red-500">{errors.email}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-primary mb-1">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.phone ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                  placeholder="(123) 456-7890"
-                />
-                {errors.phone && (
-                  <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
-                )}
-              </div>
-
-              <div className="md:col-span-2">
                 <label htmlFor="danceExperience" className="block text-sm font-medium text-primary mb-1">
                   Dance Experience
                 </label>
@@ -238,14 +272,35 @@ const SignupForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="beginner">Beginner (No Experience)</option>
-                  <option value="some">Some Experience (Less than 1 year)</option>
-                  <option value="intermediate">Intermediate (1-3 years)</option>
-                  <option value="advanced">Advanced (3+ years)</option>
+                  <option value="">Please select</option>
+                  <option value="none">No Experience</option>
+                  <option value="beginner">Have experience in ballroom dance</option>
+                  <option value="intermediate">Have experience in other dances (ballet, gymnastics, hip-hop etc)</option>
                 </select>
               </div>
 
-              <div className="md:col-span-2">
+              {/* UofT Email */}
+              <div>
+                <label htmlFor="uoftEmail" className="block text-sm font-medium text-primary mb-1">
+                  UofT Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="uoftEmail"
+                  name="uoftEmail"
+                  value={formData.uoftEmail}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.uoftEmail ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                  placeholder="name@mail.utoronto.ca"
+                />
+                {errors.uoftEmail && (
+                  <p className="mt-1 text-xs text-red-500">{errors.uoftEmail}</p>
+                )}
+              </div>
+
+              {/* How did you hear about us */}
+              <div>
                 <label htmlFor="howHeard" className="block text-sm font-medium text-primary mb-1">
                   How did you hear about us?
                 </label>
@@ -257,52 +312,58 @@ const SignupForm = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Please select</option>
-                  <option value="friend">Friend or Family</option>
-                  <option value="social">Social Media</option>
-                  <option value="flyer">Flyer or Poster</option>
-                  <option value="event">Campus Event</option>
+                  <option value="friend">Referral (e.g. by friend)</option>
+                  <option value="social">Instagram</option>
+                  <option value="clubs">UTSU Clubs Fair</option>
+                  <option value="poster">Website</option>
                   <option value="other">Other</option>
                 </select>
               </div>
 
+              {/* Partner */}
               <div className="md:col-span-2">
-                <label htmlFor="comments" className="block text-sm font-medium text-primary mb-1">
-                  Additional Comments or Questions
+                <label htmlFor="partner" className="block text-sm font-medium text-primary mb-1">
+                  Do you have a dance partner?
+                </label>
+                <input
+                  type="text"
+                  id="partner"
+                  name="partner"
+                  value={formData.partner}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+
+              {/* Questions/Comments */}
+              <div className="md:col-span-2">
+                <label htmlFor="questions" className="block text-sm font-medium text-primary mb-1">
+                  Questions or Comments
                 </label>
                 <textarea
-                  id="comments"
-                  name="comments"
-                  value={formData.comments}
+                  id="questions"
+                  name="questions"
+                  value={formData.questions}
                   onChange={handleChange}
                   rows="4"
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 ></textarea>
               </div>
 
+              {/* Instagram */}
               <div className="md:col-span-2">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="agreeToTerms"
-                      name="agreeToTerms"
-                      type="checkbox"
-                      checked={formData.agreeToTerms}
-                      onChange={handleChange}
-                      className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="agreeToTerms" className="font-medium text-primary">
-                      I agree to the terms and conditions <span className="text-red-500">*</span>
-                    </label>
-                    <p className="text-primary-light text-xs mt-1">
-                      By checking this box, you agree to receive emails about upcoming events and classes.
-                    </p>
-                    {errors.agreeToTerms && (
-                      <p className="mt-1 text-xs text-red-500">{errors.agreeToTerms}</p>
-                    )}
-                  </div>
-                </div>
+                <label htmlFor="instagram" className="block text-sm font-medium text-primary mb-1">
+                  Instagram Handle (Optional)
+                </label>
+                <input
+                  type="text"
+                  id="instagram"
+                  name="instagram"
+                  value={formData.instagram}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="@yourusername"
+                />
               </div>
             </div>
 
