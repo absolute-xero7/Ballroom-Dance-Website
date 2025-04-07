@@ -60,72 +60,60 @@ const SignupForm = () => {
     if (validateForm()) {
       setFormStatus({ submitted: false, error: false, message: 'Submitting...' });
 
-      // Google Form ID from your form URL (replace with your actual form ID)
-      const formId = '1FAIpQLSd05ibTnjPxDtkrp0h8nHMtBLyCzsMQhw5n2RBTLdd9lVq3ZQ';
+      // The URL of your deployed Google Apps Script
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxmuAa4PIIN3nvifc_pa6YVqgp0CD21_2BfXuFsEbusyebiVxQ6BtVafxr9Hjot5Py1/exec';
 
-      // Create form data object with Google Form field IDs
-      const googleFormData = new FormData();
-      googleFormData.append('entry.1951851101', formData.fullName); // Example entry ID
-      googleFormData.append('entry.22590857', formData.year);  // Replace with your actual entry IDs
-      googleFormData.append('entry.1541195092', formData.preFirstName);
-      googleFormData.append('entry.751747774', formData.danceExperience);
-      googleFormData.append('entry.684069553', formData.uoftEmail);
-      googleFormData.append('entry.1971980529', formData.howHeard);
-      googleFormData.append('entry.108817508', formData.partner);
-      googleFormData.append('entry.308878977', formData.questions);
-      googleFormData.append('entry.984202028', formData.instagram);
+      // Create a simple object with just the data
+      const submissionData = {
+        fullName: formData.fullName || '',
+        year: formData.year || '',
+        preFirstName: formData.preFirstName || '',
+        danceExperience: formData.danceExperience || '',
+        uoftEmail: formData.uoftEmail || '',
+        howHeard: formData.howHeard || '',
+        partner: formData.partner || '',
+        questions: formData.questions || '',
+        instagram: formData.instagram || ''
+      };
 
-      // Google Form submission URL
-      const googleFormUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
+      // Send the form data to the script
+      fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // This is important for cross-domain requests
+        headers: {
+          'Content-Type': 'text/plain',  // Changed from application/json
+        },
+        body: JSON.stringify(submissionData),
+      })
+        .then(response => {
+          // With no-cors mode, we can't read the response
+          setFormStatus({
+            submitted: true,
+            error: false,
+            message: 'Thank you for signing up! Your registration has been received.'
+          });
 
-      // Create a hidden iframe for submission (works around CORS issues)
-      const iframe = document.createElement('iframe');
-      iframe.setAttribute('style', 'display: none');
-      document.body.appendChild(iframe);
-
-      // Create a form inside the iframe
-      const iframeDocument = iframe.contentWindow.document;
-      const iframeForm = iframeDocument.createElement('form');
-      iframeForm.method = 'POST';
-      iframeForm.action = googleFormUrl;
-      iframeDocument.body.appendChild(iframeForm);
-
-      // Add form data to the iframe form
-      for (const [key, value] of googleFormData.entries()) {
-        const input = iframeDocument.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        iframeForm.appendChild(input);
-      }
-
-      // Submit the form
-      iframeForm.submit();
-
-      // Show success message and reset form
-      setFormStatus({
-        submitted: true,
-        error: false,
-        message: 'Thank you for signing up! We will contact you shortly.'
-      });
-
-      // Reset form after successful submission
-      setFormData({
-        fullName: '',
-        year: '',
-        preFirstName: '',
-        danceExperience: '',
-        uoftEmail: '',
-        howHeard: '',
-        partner: '',
-        questions: '',
-        instagram: ''
-      });
-
-      // Remove the iframe after submission
-      setTimeout(() => {
-        document.body.removeChild(iframe);
-      }, 1000);
+          // Reset form after successful submission
+          setFormData({
+            fullName: '',
+            year: '',
+            preFirstName: '',
+            danceExperience: '',
+            uoftEmail: '',
+            howHeard: '',
+            partner: '',
+            questions: '',
+            instagram: ''
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setFormStatus({
+            submitted: false,
+            error: true,
+            message: 'There was a problem submitting your form. Please try again.'
+          });
+        });
     } else {
       setFormStatus({
         submitted: false,
@@ -231,13 +219,12 @@ const SignupForm = () => {
                     }`}
                 >
                   <option value="">Please select</option>
-                  <option value="1">1st Year</option>
-                  <option value="2">2nd Year</option>
-                  <option value="3">3rd Year</option>
-                  <option value="4">4th Year</option>
-                  <option value="5+">5+ Year</option>
-                  <option value="graduate">Graduate Student</option>
-                  <option value="alumni">Alumni</option>
+                  <option value="First Year">1st Year</option>
+                  <option value="Second Year">2nd Year</option>
+                  <option value="Third Year">3rd Year</option>
+                  <option value="Fourth Year">4th Year</option>
+                  <option value="Fifth Year">5th Year</option>
+                  <option value="Grad Student">Graduate Student</option>
                   <option value="other">Other</option>
                 </select>
                 {errors.year && (

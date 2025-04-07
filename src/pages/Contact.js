@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import EmbeddedSignupForm from '../components/EmbeddedSignupForm';
+import SignupForm from '../components/SignupForm';
 
 const Contact = () => {
   useEffect(() => {
@@ -249,11 +249,11 @@ const Contact = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>http://localhost:3000/contact
+            </div>
           </motion.div>
 
           {/* Membership Form */}
-          <EmbeddedSignupForm />
+          <SignupForm />
         </div>
       </section>
     </div>

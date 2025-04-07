@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Events from '../components/Events';
-import EmbeddedSignupForm from '../components/EmbeddedSignupForm';
+import SignupForm from '../components/SignupForm';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 const Home = () => {
@@ -49,7 +49,7 @@ const Home = () => {
       </section>
 
       <section id="signup">
-        <EmbeddedSignupForm />
+        <SignupForm />
       </section>
     </>
   );
