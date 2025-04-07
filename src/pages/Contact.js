@@ -22,8 +22,8 @@ const Contact = () => {
   const boardMembers = [
     { name: 'Roberta Chira', position: 'President', email: 'roberta.chira@mail.utoronto.ca', image: '/assets/images/team/president.jpg' },
     { name: 'Maya Kabasawa', position: 'Vice President', email: 'maya.kabasawa@mail.utoronto.ca', image: '/assets/images/team/vice-president.jpg' },
-    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/treasurer.jpg' },
-    { name: 'Jennifer', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/secretary.jpg' }
+    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.JPEG' },
+    { name: 'Jennifer', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/jennifer.jpg' }
   ];
 
   return (
