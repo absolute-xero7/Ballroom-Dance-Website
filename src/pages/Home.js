@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
-import Events from '../components/Events';
-import SignupForm from '../components/SignupForm';
 import { motion, useScroll, useSpring } from 'framer-motion';
 
 const Home = () => {
@@ -38,18 +35,6 @@ const Home = () => {
       {/* Add section id for navbar tracking */}
       <section id="home">
         <Hero />
-      </section>
-
-      <section id="about">
-        <About />
-      </section>
-
-      <section id="events">
-        <Events />
-      </section>
-
-      <section id="signup">
-        <SignupForm />
       </section>
     </>
   );

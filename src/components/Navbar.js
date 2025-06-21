@@ -27,7 +27,7 @@ const Navbar = () => {
       // Only track sections on the home page
       if (isHomePage) {
         // Get all sections that have IDs
-        const sections = ['home', 'about', 'dance-styles', 'events', 'signup'];
+        const sections = ['home'];
 
         // Find which section is currently in view
         for (const sectionId of sections) {
@@ -69,16 +69,12 @@ const Navbar = () => {
   // Map section IDs to navbar items
   const sectionToNavItem = {
     'home': '/',
-    'about': '/#about',
-    'events': '/events',
-    'signup': '/contact',
     'gallery': '/gallery',
     'contact': '/contact'
   };
 
   const navItems = [
     { name: 'Home', path: '/', section: 'home' },
-    { name: 'About', path: '/#about', section: 'about' },
     { name: 'Events', path: '/events', section: 'events' },
     { name: 'Gallery', path: '/gallery', section: 'gallery' },
     { name: 'Contact', path: '/contact', section: 'contact' },

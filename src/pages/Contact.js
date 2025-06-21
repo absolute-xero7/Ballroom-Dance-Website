@@ -20,10 +20,10 @@ const Contact = () => {
 
   // Board members data
   const boardMembers = [
-    { name: 'Roberta Chira', position: 'President', email: 'roberta.chira@mail.utoronto.ca', image: '/assets/images/team/president.jpg' },
-    { name: 'Maya Kabasawa', position: 'Vice President', email: 'maya.kabasawa@mail.utoronto.ca', image: '/assets/images/team/vice-president.jpg' },
-    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.JPEG' },
-    { name: 'Jennifer', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/jennifer.jpg' }
+    { name: 'Roberta Chira', position: 'President', email: 'roberta.chira@mail.utoronto.ca', image: '/assets/images/team/roberta.jpg', imagePosition: 'center 30%' },
+    { name: 'Maya Kabasawa', position: 'Vice President', email: 'maya.kabasawa@mail.utoronto.ca', image: '/assets/images/team/maya.jpg', imagePosition: 'center 25%' },
+    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.JPEG', imagePosition: 'center 35%' },
+    { name: 'Jennifer', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/jennifer.jpg', imagePosition: 'center 40%' }
   ];
 
   return (
@@ -235,6 +235,7 @@ const Contact = () => {
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover object-center"
+                      style={{ objectPosition: member.imagePosition }}
                     />
                   </div>
                   <div className="p-4">

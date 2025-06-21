@@ -132,8 +132,8 @@ const GalleryPage = () => {
                 <button
                   key={category.id}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === category.id
-                      ? 'bg-primary text-white'
-                      : 'bg-secondary-dark text-primary hover:bg-primary/10'
+                    ? 'bg-primary text-white'
+                    : 'bg-secondary-dark text-primary hover:bg-primary/10'
                     }`}
                   onClick={() => setFilter(category.id)}
                 >
@@ -144,44 +144,21 @@ const GalleryPage = () => {
           </motion.div>
 
           {/* Gallery Grid */}
-          {filteredImages.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredImages.map((image, index) => (
-                <motion.div
-                  key={image.id}
-                  className="bg-white rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-all"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  onClick={() => openModal(image)}
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
-                    />
-                    {image.featured && (
-                      <div className="absolute top-0 right-0 bg-accent text-white text-xs px-2 py-1">
-                        Featured
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <p className="text-primary-light">{image.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-10 bg-white rounded-lg shadow-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <h3 className="text-xl font-medium text-primary mb-2">No photos found</h3>
-              <p className="text-primary-light">Try selecting a different category</p>
-            </div>
-          )}
+          <div className="flex items-center justify-center min-h-[60vh]">
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <h2 className="text-6xl md:text-8xl font-serif font-bold text-primary mb-6">
+                Coming Soon
+              </h2>
+              <p className="text-xl md:text-2xl text-primary-light max-w-2xl mx-auto">
+                We're working on some amazing photos for you. Stay tuned for updates!
+              </p>
+            </motion.div>
+          </div>
 
           {/* Image Modal */}
           {selectedImage && (
