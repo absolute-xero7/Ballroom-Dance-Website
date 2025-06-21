@@ -11,7 +11,7 @@ const Contact = () => {
   // Class schedule data
   const classSchedule = [
     {
-      day: 'Tuesday',
+      day: 'Monday',
       classes: [
         { time: '8:00 PM - 9:00 PM', name: 'Beginner Waltz', location: 'Studio A', instructor: 'Roberta Chira' },
       ]
@@ -201,7 +201,7 @@ const Contact = () => {
 
                 <div className="mt-6 text-primary-light text-sm">
                   <p>* Class schedule is subject to change. Please check our social media or contact us for the most up-to-date information.</p>
-                  <p className="mt-2">* Drop-in fees: $15 for members, $20 for non-members per class. Class cards and semester passes available.</p>
+                  {/* <p className="mt-2">* Drop-in fees: $15 for members, $20 for non-members per class. Class cards and semester passes available.</p> */}
                 </div>
               </div>
             </motion.div>
