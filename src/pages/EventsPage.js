@@ -11,16 +11,17 @@ const EventsPage = () => {
   const allEvents = [
     {
       id: 1,
-      title: "Coming soon",
-      date: "",
-      time: "",
-      location: "",
-      description: "More events will be announced soon!",
-      image: "/assets/images/events/coming-soon.jpg",
-      category: "all",
-      price: "",
-      registrationRequired: false,
-      featured: false
+      title: "Masquerade Ball",
+      date: "Nov 22, 2024",
+      time: "6:00 PM - 9:00 PM",
+      location: "TBA",
+      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Dress in your finest attire and don't forget your mask! The night will feature a mix of ballroom dances and snacks",
+      image: "/assets/images/events/masquerade.png",
+      category: "social",
+      price: "$20 Members | $40 Non-members",
+      registrationRequired: true,
+      featured: true,
+      imagePosition: "center 15%",
     }
   ];
 
@@ -145,21 +146,72 @@ const EventsPage = () => {
           </motion.div>
 
           {/* Events grid */}
-          <div className="flex items-center justify-center min-h-[60vh]">
+          {filteredEvents.length > 0 ? (
             <motion.div
-              className="text-center"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              {filteredEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300"
+                  onClick={() => showEventDetails(event)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }}
+                >
+                  <div className="relative h-56">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: event.imagePosition || 'center' }}
+                    />
+                    <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                      {event.date}
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                      <span className="text-sm font-semibold text-white uppercase tracking-wider bg-accent/80 px-2 py-1 rounded">{event.category}</span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-serif font-bold text-primary mb-2">{event.title}</h3>
+                    <div className="flex items-center text-sm text-primary-light mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span>{event.location}</span>
+                    </div>
+                    <p className="text-primary-light text-sm mb-4 h-10 overflow-hidden">{event.description}</p>
+                    <button
+                      className="w-full text-center font-bold text-primary hover:text-accent transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        showEventDetails(event);
+                      }}
+                    >
+                      View Details &rarr;
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              className="text-center py-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <h2 className="text-6xl md:text-8xl font-serif font-bold text-primary mb-6">
-                Coming Soon
-              </h2>
-              <p className="text-xl md:text-2xl text-primary-light max-w-2xl mx-auto">
-                We're working on some amazing events for you. Stay tuned for updates!
+              <h2 className="text-4xl font-serif font-bold text-primary mb-4">No Events Found</h2>
+              <p className="text-lg text-primary-light">
+                Try adjusting your search or filter. We'll be announcing more events soon!
               </p>
             </motion.div>
-          </div>
+          )}
 
           {/* Event Details Modal */}
           {selectedEvent && (
@@ -178,7 +230,8 @@ const EventsPage = () => {
                     <img
                       src={selectedEvent.image}
                       alt={selectedEvent.title}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: selectedEvent.imagePosition || 'center' }}
                     />
                     <button
                       className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors"
