@@ -4,45 +4,15 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-secondary">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-secondary pt-24">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-secondary z-0 opacity-60">
         <div className="absolute h-full w-full bg-[radial-gradient(#3B4A6B_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
       </div>
 
       {/* Decorative elements */}
-      <motion.img
-        src="/assets/images/butterfly.svg"
-        alt=""
-        className="butterfly absolute top-20 right-[10%] w-12 md:w-16 opacity-70 z-10"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 0.7 }}
-        transition={{
-          duration: 1,
-          delay: 0.5,
-          repeat: Infinity,
-          repeatType: "reverse",
-          repeatDelay: 5
-        }}
-      />
 
-      <motion.img
-        src="/assets/images/birds.svg"
-        alt=""
-        className="bird absolute bottom-20 left-[5%] w-16 md:w-24 opacity-70 z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ duration: 1, delay: 0.7 }}
-      />
-
-      <motion.img
-        src="/assets/images/flowers.svg"
-        alt=""
-        className="flower absolute bottom-10 right-[5%] w-20 md:w-32 opacity-70 z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.7 }}
-        transition={{ duration: 1, delay: 1 }}
-      />
+      {/* Removed missing SVG decorative images */}
 
       <div className="container mx-auto px-4 md:px-6 z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">

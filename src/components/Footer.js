@@ -77,7 +77,7 @@ const Footer = () => {
                   </svg>
                 </div>
                 <a href="mailto:ballroomdance.uoft@studentorg.utoronto.ca" className="text-secondary-dark opacity-80 hover:opacity-100 hover:text-accent transition-colors">
-                  ballroomdance.uoft@studentorg.utoronto.ca
+                  Email Us
                 </a>
               </li>
               {/* <li className="flex items-center">
