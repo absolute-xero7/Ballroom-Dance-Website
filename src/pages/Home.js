@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -26,6 +27,32 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Ballroom Dance Society | Home</title>
+        <meta name="description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <meta property="og:title" content="Ballroom Dance Society | Home" />
+        <meta property="og:description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <meta property="og:image" content="/assets/images/dancers.jpg" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ballroomdanceuoft.com/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ballroom Dance Society | Home" />
+        <meta name="twitter:description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <meta name="twitter:image" content="/assets/images/dancers.jpg" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Ballroom Dance Society",
+            "url": "https://ballroomdanceuoft.com/",
+            "logo": "/favicon.ico",
+            "sameAs": [
+              "https://www.instagram.com/ballroomdance_uoft/"
+            ]
+          }
+        `}</script>
+      </Helmet>
+
       {/* Progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent z-50 origin-left"
