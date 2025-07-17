@@ -33,17 +33,19 @@ const Hero = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
-                to="/contact"
-                className="btn btn-primary"
-              >
-                Join Today
-              </Link>
-              <Link
                 to="/events"
                 className="btn btn-outline"
               >
                 Upcoming Events
               </Link>
+              <a
+                href="https://sop.utoronto.ca/group/ballroom-dance-society/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Official UofT Club Page
+              </a>
             </div>
           </motion.div>
 

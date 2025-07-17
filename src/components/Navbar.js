@@ -123,12 +123,14 @@ const Navbar = () => {
 
           {/* Join Now Button (Desktop) */}
           <div className="hidden lg:block">
-            <Link
-              to="/contact"
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdUUGmuWRoQfJNrhTXoHMEpEw8roE8O379qp8KB-cHoedtGtA/viewform" // TODO: Replace with your actual Google Forms link
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary whitespace-nowrap text-sm lg:text-base"
             >
               Join Now
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -187,12 +189,14 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
+            <a
+              href="https://forms.gle/your-google-form-link" // TODO: Replace with your actual Google Forms link
+              target="_blank"
+              rel="noopener noreferrer"
               className="block w-full text-center btn btn-primary mt-4"
             >
               Join Now
-            </Link>
+            </a>
           </div>
         </motion.div>
       )}

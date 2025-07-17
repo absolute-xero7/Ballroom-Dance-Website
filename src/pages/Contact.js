@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import SignupForm from '../components/SignupForm';
 import { Helmet } from 'react-helmet-async';
 
 const Contact = () => {
@@ -23,8 +22,9 @@ const Contact = () => {
   const boardMembers = [
     { name: 'Roberta Chira', position: 'President', email: 'roberta.chira@mail.utoronto.ca', image: '/assets/images/team/roberta.jpg', imagePosition: 'center 30%' },
     { name: 'Maya Kabasawa', position: 'Vice President', email: 'maya.kabasawa@mail.utoronto.ca', image: '/assets/images/team/maya.jpeg', imagePosition: 'center 45%' },
-    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.JPEG', imagePosition: 'center 35%' },
-    { name: 'Jennifer', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/jennifer.jpg', imagePosition: 'center 40%' }
+    { name: 'Akshita Rajpal', position: 'Communication Liaison', email: 'akshita.rajpal@mail.utoronto.ca', image: '/assets/images/team/akshita.jpg', imagePosition: 'center 40%' },
+    { name: 'Jennifer Cong', position: 'Financial Director', email: 'jennifer.cong@mail.utoronto.ca', image: '/assets/images/team/jennifer.jpg', imagePosition: 'center 40%' },
+    { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.JPEG', imagePosition: 'center 35%' }
   ];
 
   return (
@@ -192,40 +192,72 @@ const Contact = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {boardMembers.map((member, index) => (
-                  <motion.div
-                    key={member.name}
-                    className="bg-white rounded-lg shadow-md overflow-hidden text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }}
-                  >
-                    <div className="h-48 overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-center"
-                        style={{ objectPosition: member.imagePosition }}
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-lg font-serif font-bold text-primary">{member.name}</h3>
-                      <p className="text-accent mb-2">{member.position}</p>
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="text-sm text-primary-light hover:text-accent"
-                      >
-                        {member.email}
-                      </a>
-                    </div>
-                  </motion.div>
-                ))}
+              {/* Pyramid/Diamond Layout */}
+              <div className="flex flex-col items-center space-y-8">
+                {/* Top row: 3 members */}
+                <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-6">
+                  {boardMembers.slice(0, 3).map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      className="bg-white rounded-lg shadow-md overflow-hidden text-center w-72"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }}
+                    >
+                      <div className="h-48 overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover object-center"
+                          style={{ objectPosition: member.imagePosition }}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-serif font-bold text-primary">{member.name}</h3>
+                        <p className="text-accent mb-2">{member.position}</p>
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-sm text-primary-light hover:text-accent"
+                        >
+                          {member.email}
+                        </a>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                {/* Bottom row: 2 members, centered */}
+                <div className="flex flex-col sm:flex-row justify-center space-y-6 sm:space-y-0 sm:space-x-6">
+                  {boardMembers.slice(3).map((member, index) => (
+                    <motion.div
+                      key={member.name}
+                      className="bg-white rounded-lg shadow-md overflow-hidden text-center w-72"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.9 + (index * 0.1) }}
+                    >
+                      <div className="h-48 overflow-hidden">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover object-center"
+                          style={{ objectPosition: member.imagePosition }}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-lg font-serif font-bold text-primary">{member.name}</h3>
+                        <p className="text-accent mb-2">{member.position}</p>
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-sm text-primary-light hover:text-accent"
+                        >
+                          {member.email}
+                        </a>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
-
-            {/* Membership Form */}
-            <SignupForm />
           </div>
         </section>
       </div>

@@ -65,31 +65,18 @@ const Home = () => {
       </section>
 
       {/* Ballroom Dance Society Spotify Playlist & Official Club Page */}
-      <section className="flex flex-col md:flex-row gap-8 items-center justify-center my-12 px-4">
-        <div className="w-full md:w-1/2 mb-8 md:mb-0">
-          <h2 className="text-2xl font-bold mb-4 text-primary">Dance to Our Playlist!</h2>
-          <iframe
-            src="https://open.spotify.com/embed/playlist/3BwKFw5saNRuKVEwP1WLsN?utm_source=generator"
-            width="100%"
-            height="380"
-            frameBorder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            title="Ballroom Dance Society Spotify Playlist"
-            className="rounded-lg shadow-lg"
-          ></iframe>
-        </div>
-        <div className="w-full md:w-1/2 flex flex-col items-center">
-          <h2 className="text-2xl font-bold mb-4 text-primary">Learn More About Us</h2>
-          <a
-            href="https://sop.utoronto.ca/group/ballroom-dance-society/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            Official UofT Club Page
-          </a>
-        </div>
+      <section className="flex flex-col items-center justify-center my-2 px-4">
+        <h2 className="text-2xl font-bold mb-4 text-primary">Dance to Our Playlist!</h2>
+        <iframe
+          src="https://open.spotify.com/embed/playlist/3BwKFw5saNRuKVEwP1WLsN?utm_source=generator"
+          width="100%"
+          height="380"
+          frameBorder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          title="Ballroom Dance Society Spotify Playlist"
+          className="rounded-lg shadow-lg max-w-xl mx-auto"
+        ></iframe>
       </section>
     </>
   );
