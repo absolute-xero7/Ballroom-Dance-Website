@@ -190,7 +190,7 @@ const Navbar = () => {
               </Link>
             ))}
             <a
-              href="https://forms.gle/your-google-form-link" // TODO: Replace with your actual Google Forms link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdUUGmuWRoQfJNrhTXoHMEpEw8roE8O379qp8KB-cHoedtGtA/viewform"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center btn btn-primary mt-4"
