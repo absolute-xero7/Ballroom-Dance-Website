@@ -174,7 +174,7 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-secondary shadow-lg"
+          className="lg:hidden bg-secondary shadow-lg"
         >
           <div className="px-4 py-4 space-y-3">
             {navItems.map((item) => (
