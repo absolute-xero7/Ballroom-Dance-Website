@@ -33,13 +33,13 @@ const fallSchedule = [
 ];
 
 const ClassSchedule = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     return (
         <div className="bg-white rounded-lg shadow-md px-4 pt-4 pb-1 md:px-6 md:pt-4 md:pb-1">
             <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-primary">
-                    Fall Semester Schedule
+                    Fall 2025 Schedule
                 </h2>
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}

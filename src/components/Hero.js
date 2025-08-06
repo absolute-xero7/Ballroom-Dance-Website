@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import OptimizedImage from './ui/OptimizedImage';
 
 const Hero = () => {
   return (
@@ -36,13 +37,13 @@ const Hero = () => {
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdhjnALhvqlGHPQt_mxasVbZgfC_bHluIjF4yEahuKYuTFDIg/viewform?pli=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-primary w-3/5 sm:flex-none sm:w-48 text-center flex items-center justify-center mx-auto sm:mx-0"
               >
                 Join Now
               </a>
               <Link
                 to="/events"
-                className="btn btn-outline"
+                className="btn btn-outline w-3/5 sm:flex-none sm:w-48 text-center flex items-center justify-center mx-auto sm:mx-0"
               >
                 Upcoming Events
               </Link>
@@ -50,7 +51,7 @@ const Hero = () => {
                 href="https://sop.utoronto.ca/group/ballroom-dance-society/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-primary w-3/5 sm:flex-none sm:w-48 text-center flex items-center justify-center mx-auto sm:mx-0"
               >
                 Official UofT Club Page
               </a>
@@ -64,10 +65,11 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <img
+            <OptimizedImage
               src="/assets/images/dancers.jpg"
               alt="Ballroom dancers in elegant pose"
               className="max-w-full h-auto rounded-lg shadow-lg"
+              loading="eager"
             />
           </motion.div>
         </div>

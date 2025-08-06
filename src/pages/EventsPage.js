@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import ClassSchedule from '../components/ClassSchedule';
+import OptimizedImage from '../components/ui/OptimizedImage';
+import { useSearchAndFilter, useDebounce } from '../hooks/useOptimizations';
 
 const EventsPage = () => {
   useEffect(() => {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { getUpcomingEvents } from '../data/eventsData';
+import OptimizedImage from './ui/OptimizedImage';
 
 const Events = () => {
   // Sample upcoming events data
@@ -88,8 +90,8 @@ const Events = () => {
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             <button
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'all'
-                  ? 'bg-primary text-white'
-                  : 'bg-secondary text-primary hover:bg-primary/10'
+                ? 'bg-primary text-white'
+                : 'bg-secondary text-primary hover:bg-primary/10'
                 }`}
               onClick={() => setFilter('all')}
             >
@@ -97,8 +99,8 @@ const Events = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'workshop'
-                  ? 'bg-primary text-white'
-                  : 'bg-secondary text-primary hover:bg-primary/10'
+                ? 'bg-primary text-white'
+                : 'bg-secondary text-primary hover:bg-primary/10'
                 }`}
               onClick={() => setFilter('workshop')}
             >
@@ -106,8 +108,8 @@ const Events = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'social'
-                  ? 'bg-primary text-white'
-                  : 'bg-secondary text-primary hover:bg-primary/10'
+                ? 'bg-primary text-white'
+                : 'bg-secondary text-primary hover:bg-primary/10'
                 }`}
               onClick={() => setFilter('social')}
             >
@@ -115,8 +117,8 @@ const Events = () => {
             </button>
             <button
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'practice'
-                  ? 'bg-primary text-white'
-                  : 'bg-secondary text-primary hover:bg-primary/10'
+                ? 'bg-primary text-white'
+                : 'bg-secondary text-primary hover:bg-primary/10'
                 }`}
               onClick={() => setFilter('practice')}
             >
@@ -149,8 +151,8 @@ const Events = () => {
                     <div className="flex items-center justify-between mb-2">
                       <h3 className="text-xl font-serif font-bold text-primary">{event.title}</h3>
                       <span className={`text-xs px-2 py-1 rounded ${event.category === 'workshop' ? 'bg-blue-100 text-blue-800' :
-                          event.category === 'social' ? 'bg-green-100 text-green-800' :
-                            'bg-purple-100 text-purple-800'
+                        event.category === 'social' ? 'bg-green-100 text-green-800' :
+                          'bg-purple-100 text-purple-800'
                         }`}>
                         {event.category.charAt(0).toUpperCase() + event.category.slice(1)}
                       </span>

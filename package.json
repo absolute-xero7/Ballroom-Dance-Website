@@ -20,8 +20,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/ --ext .js,.jsx",
+    "lint:fix": "eslint src/ --ext .js,.jsx --fix",
+    "format": "prettier --write src/",
+    "optimize:images": "imagemin src/assets/images/* --out-dir=public/assets/images/optimized",
+    "audit": "npm audit && lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html"
   },
   "eslintConfig": {
     "extends": [
