@@ -61,8 +61,8 @@ const Navbar = () => {
       setActiveSection('events');
     } else if (location.pathname === '/gallery') {
       setActiveSection('gallery');
-    } else if (location.pathname === '/contact') {
-      setActiveSection('contact');
+    } else if (location.pathname === '/about') {
+      setActiveSection('about');
     }
   }, [location]);
 
@@ -70,6 +70,7 @@ const Navbar = () => {
   const sectionToNavItem = {
     'home': '/',
     'gallery': '/gallery',
+    'playlists': '/playlists',
     'contact': '/contact'
   };
 
@@ -77,7 +78,8 @@ const Navbar = () => {
     { name: 'Home', path: '/', section: 'home' },
     { name: 'Events', path: '/events', section: 'events' },
     { name: 'Gallery', path: '/gallery', section: 'gallery' },
-    { name: 'Contact', path: '/contact', section: 'contact' },
+    { name: 'Playlists', path: '/playlists', section: 'playlists' },
+    { name: 'About', path: '/about', section: 'about' },
   ];
 
   // Check if a nav item should be highlighted
@@ -190,7 +192,7 @@ const Navbar = () => {
               </Link>
             ))}
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdUUGmuWRoQfJNrhTXoHMEpEw8roE8O379qp8KB-cHoedtGtA/viewform"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdhjnALhvqlGHPQt_mxasVbZgfC_bHluIjF4yEahuKYuTFDIg/viewform?pli=1"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full text-center btn btn-primary mt-4"

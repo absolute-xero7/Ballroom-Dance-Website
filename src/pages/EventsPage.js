@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import ClassSchedule from '../components/ClassSchedule';
 
 const EventsPage = () => {
   useEffect(() => {
@@ -85,6 +86,11 @@ const EventsPage = () => {
                 Browse and register for our upcoming workshops, social dances, and special events.
                 From beginners to advanced dancers, there's something for everyone!
               </motion.p>
+            </div>
+
+            {/* Class Schedule */}
+            <div className="mb-16">
+              <ClassSchedule />
             </div>
 
             {/* Search and Filter */}

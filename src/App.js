@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import EventsPage from './pages/EventsPage';
 import GalleryPage from './pages/GalleryPage';
-import Contact from './pages/Contact';
+import PlaylistsPage from './pages/PlaylistsPage';
+import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './styles/index.css';
@@ -40,7 +41,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/playlists" element={<PlaylistsPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </main>
       <Footer />

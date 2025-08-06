@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+// ...existing imports...
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -64,20 +65,7 @@ const Home = () => {
         <Hero />
       </section>
 
-      {/* Ballroom Dance Society Spotify Playlist & Official Club Page */}
-      <section className="flex flex-col items-center justify-center my-2 px-4">
-        <h2 className="text-2xl font-bold mb-4 text-primary">Dance to Our Playlist!</h2>
-        <iframe
-          src="https://open.spotify.com/embed/playlist/3BwKFw5saNRuKVEwP1WLsN?utm_source=generator"
-          width="100%"
-          height="380"
-          frameBorder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-          title="Ballroom Dance Society Spotify Playlist"
-          className="rounded-lg shadow-lg max-w-xl mx-auto"
-        ></iframe>
-      </section>
+      {/* ... Home content without playlists button ... */}
     </>
   );
 };
