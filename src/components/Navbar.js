@@ -126,7 +126,7 @@ const Navbar = () => {
           {/* Join Now Button (Desktop) */}
           <div className="hidden lg:block">
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdUUGmuWRoQfJNrhTXoHMEpEw8roE8O379qp8KB-cHoedtGtA/viewform" // TODO: Replace with your actual Google Forms link
+              href="https://docs.google.com/forms/d/e/1FAIpQLSdhjnALhvqlGHPQt_mxasVbZgfC_bHluIjF4yEahuKYuTFDIg/viewform?pli=1"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary whitespace-nowrap text-sm lg:text-base"
