@@ -5,7 +5,7 @@ import OptimizedImage from './ui/OptimizedImage';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-secondary pt-24">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-secondary pt-28 lg:pt-32">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-secondary z-0 opacity-60">
         <div className="absolute h-full w-full bg-[radial-gradient(#3B4A6B_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_60%,transparent_100%)]"></div>
