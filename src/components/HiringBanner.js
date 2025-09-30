@@ -2,14 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const HiringBanner = () => {
-  // Check if the current date is before September 3, 2025
-  const currentDate = new Date();
-  const endDate = new Date('2025-09-03');
-  
-  // Don't show the banner if the hiring period has ended
-  if (currentDate > endDate) {
-    return null;
-  }
+  // Permanent banner: always show
 
   return (
     <motion.div
