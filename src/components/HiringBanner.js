@@ -16,9 +16,9 @@ const HiringBanner = () => {
           <span className="font-semibold text-xs lg:text-base">
             🎭 We're Hiring! Join our amazing team!
           </span>
-          <span className="text-xs lg:text-sm opacity-90 hidden sm:inline">
+          {/* <span className="text-xs lg:text-sm opacity-90 hidden sm:inline">
             Applications open until Sep 3rd
-          </span>
+          </span> */}
           <a
             href="https://forms.gle/toBjgh24YtqKtAXaA"
             target="_blank"
