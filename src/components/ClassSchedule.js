@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const fallSchedule = [
     {
         month: 'September',
-        note: 'All September lessons are free to try!',
+        // note: 'All September lessons are free to try!',
         classes: [
             { date: 'Sep 15', name: 'Cha Cha Cha' },
             { date: 'Sep 22', name: 'Slow Waltz' },
@@ -13,7 +13,7 @@ const fallSchedule = [
     },
     {
         month: 'October',
-        note: 'Membership required to attend.',
+        // note: 'Membership required to attend.',
         classes: [
             { date: 'Oct 6', name: 'Cha Cha Cha' },
             { date: 'Oct 13', name: 'Cha Cha Cha' },
