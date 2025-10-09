@@ -2,14 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const playlists = [
-    { id: '2dkMbWmcP9rW17eQqja3AM', title: 'Cha Cha Cha' },
-    { id: '58Izz7Wx8RKfCXc7VZDMZV', title: 'Slow Waltz' },
-    { id: '7FOWO0DK2NUoHQ8zasxxHP', title: 'Vienna Waltz' },
-    { id: '1Fz5cgwIBko4t094HO2NW0', title: 'Discofox' },
-    { id: '697n5AYgXz92Uct5hJ5Mr9', title: 'Rumba' },
-    { id: '3VluHaqEMoYQxlp1yrFYE9', title: 'Jive' },
-    { id: '0sPnQc75UkyEt5hk4S7w0w', title: 'Tango' },
-    { id: '0ynzMVCkYsOzFABUsPfqq0', title: 'Foxtrott' }
+    { id: '1wq4GXNxVbNHTFGQjcqlZ8?pi=7DCiet2bToiHP', title: 'Slow Waltz' },
+    { id: '5JB9uODEh96qFeFzMDrj0G?pi=mucdTpzqQHO_W', title: 'Cha Cha Cha' },
+    // { id: '7FOWO0DK2NUoHQ8zasxxHP', title: 'Vienna Waltz' },
+    // { id: '1Fz5cgwIBko4t094HO2NW0', title: 'Discofox' },
+    // { id: '697n5AYgXz92Uct5hJ5Mr9', title: 'Rumba' },
+    // { id: '3VluHaqEMoYQxlp1yrFYE9', title: 'Jive' },
+    // { id: '0sPnQc75UkyEt5hk4S7w0w', title: 'Tango' },
+    // { id: '0ynzMVCkYsOzFABUsPfqq0', title: 'Foxtrott' }
 ];
 
 const PlaylistGallery = () => (

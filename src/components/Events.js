@@ -5,7 +5,6 @@ import { getUpcomingEvents } from '../data/eventsData';
 import OptimizedImage from './ui/OptimizedImage';
 
 const Events = () => {
-  // Sample upcoming events data
   const upcomingEvents = [
     {
       id: 1,
