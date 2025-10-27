@@ -8,7 +8,6 @@ import AboutPage from './pages/AboutPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
-import HiringBanner from './components/HiringBanner';
 import './styles/index.css';
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
   return (
     <ErrorBoundary>
       <div className="App min-h-screen flex flex-col">
-        <HiringBanner />
         <Navbar />
         <main className="flex-grow">
           <Routes>

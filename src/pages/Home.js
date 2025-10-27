@@ -29,22 +29,22 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Ballroom Dance Society | Home</title>
-        <meta name="description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
-        <meta property="og:title" content="Ballroom Dance Society | Home" />
-        <meta property="og:description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <title>UofT Ballroom Dance Club | Home</title>
+        <meta name="description" content="Join the UofT Ballroom Dance Club at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <meta property="og:title" content="UofT Ballroom Dance Club | Home" />
+        <meta property="og:description" content="Join the UofT Ballroom Dance Club at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
         <meta property="og:image" content="/assets/images/dancers.jpg" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ballroomdanceuoft.com/" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Ballroom Dance Society | Home" />
-        <meta name="twitter:description" content="Join the Ballroom Dance Society at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
+        <meta name="twitter:title" content="UofT Ballroom Dance Club | Home" />
+        <meta name="twitter:description" content="Join the UofT Ballroom Dance Club at the University of Toronto. Discover the elegance, joy, and passion of ballroom dancing for all levels." />
         <meta name="twitter:image" content="/assets/images/dancers.jpg" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Ballroom Dance Society",
+            "name": "UofT Ballroom Dance Club",
             "url": "https://ballroomdanceuoft.com/",
             "logo": "/favicon.ico",
             "sameAs": [
@@ -56,7 +56,7 @@ const Home = () => {
 
       {/* Progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-accent z-50 origin-left"
+        className="fixed top-0 left-0 right-0 h-1 bg-accent z-[60] origin-left"
         style={{ scaleX }}
       />
 

@@ -25,7 +25,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
+        serif: ['Cormorant Garamond', 'serif'],
         sans: ['Montserrat', 'sans-serif']
       },
       backgroundImage: {

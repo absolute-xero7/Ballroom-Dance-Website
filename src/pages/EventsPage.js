@@ -51,12 +51,24 @@ const EventsPage = () => {
     setSelectedEvent(null);
   };
 
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && selectedEvent) {
+        closeEventDetails();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [selectedEvent]);
+
   return (
     <>
       <Helmet>
-        <title>Ballroom Dance Society | Events</title>
+        <title>UofT Ballroom Dance Club | Events</title>
         <meta name="description" content="See upcoming ballroom dance events, workshops, and socials at the University of Toronto." />
-        <meta property="og:title" content="Ballroom Dance Society | Events" />
+        <meta property="og:title" content="UofT Ballroom Dance Club | Events" />
         <meta property="og:description" content="See upcoming ballroom dance events, workshops, and socials at the University of Toronto." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ballroomdanceuoft.com/events" />
@@ -95,73 +107,34 @@ const EventsPage = () => {
               <ClassSchedule />
             </div>
 
-            {/* Search and Filter */}
-            <motion.div
-              className="mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4 bg-white p-6 rounded-lg shadow-sm">
-                {/* Search */}
-                <div className="w-full md:w-1/3">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search events..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
+            {/* Search - simplified since we have few events */}
+            {allEvents.length > 3 && (
+              <motion.div
+                className="mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <div className="flex justify-center">
+                  <div className="w-full md:w-1/2">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Search events..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      />
+                      <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Filter buttons */}
-                <div className="flex flex-wrap justify-center gap-2">
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'all'
-                      ? 'bg-primary text-white'
-                      : 'bg-secondary text-primary hover:bg-primary/10'
-                      }`}
-                    onClick={() => setFilter('all')}
-                  >
-                    All Events
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'workshop'
-                      ? 'bg-primary text-white'
-                      : 'bg-secondary text-primary hover:bg-primary/10'
-                      }`}
-                    onClick={() => setFilter('workshop')}
-                  >
-                    Workshops
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'social'
-                      ? 'bg-primary text-white'
-                      : 'bg-secondary text-primary hover:bg-primary/10'
-                      }`}
-                    onClick={() => setFilter('social')}
-                  >
-                    Social Dances
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'practice'
-                      ? 'bg-primary text-white'
-                      : 'bg-secondary text-primary hover:bg-primary/10'
-                      }`}
-                    onClick={() => setFilter('practice')}
-                  >
-                    Practice Sessions
-                  </button>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
 
             {/* Events grid */}
             {filteredEvents.length > 0 ? (
@@ -225,8 +198,11 @@ const EventsPage = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <h2 className="text-4xl font-serif font-bold text-primary mb-4">No Events Found</h2>
-                <p className="text-lg text-primary-light">
-                  Try adjusting your search or filter. We'll be announcing more events soon!
+                <p className="text-lg text-primary-light mb-4">
+                  {searchTerm ? 'Try adjusting your search.' : 'Check back soon for upcoming events!'}
+                </p>
+                <p className="text-primary-light">
+                  In the meantime, check our class schedule above or follow us on social media for updates.
                 </p>
               </motion.div>
             )}

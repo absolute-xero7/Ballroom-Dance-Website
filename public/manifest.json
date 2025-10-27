@@ -1,0 +1,16 @@
+{
+  "short_name": "UofT BDC",
+  "name": "UofT Ballroom Dance Club",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3B4A6B",
+  "background_color": "#F5F2E9",
+  "description": "Official website of the UofT Ballroom Dance Club - Learn ballroom dancing at the University of Toronto"
+}

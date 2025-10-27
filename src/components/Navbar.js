@@ -94,21 +94,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 top-8 lg:top-11 ${scrolled
-        ? 'bg-secondary shadow-md py-2'
-        : 'bg-transparent py-4'
+      className={`fixed w-full z-50 transition-all duration-300 top-0 ${scrolled
+        ? 'bg-secondary/95 backdrop-blur-md shadow-md py-2'
+        : 'bg-secondary/90 backdrop-blur-sm py-4'
         }`}
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
             <span className="text-2xl md:text-3xl font-serif font-bold text-primary">
-              Ballroom Dance Society
+              UofT Ballroom Dance Club
             </span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex space-x-4 lg:space-x-8"> {/* Change 'md:flex' to 'lg:flex' */}
+          <div className="hidden lg:flex space-x-4 lg:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -121,18 +121,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-          </div>
-
-          {/* Join Now Button (Desktop) */}
-          <div className="hidden lg:block">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdhjnALhvqlGHPQt_mxasVbZgfC_bHluIjF4yEahuKYuTFDIg/viewform?pli=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary whitespace-nowrap text-sm lg:text-base"
-            >
-              Join Now
-            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -176,7 +164,7 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="lg:hidden bg-secondary shadow-lg"
+          className="lg:hidden bg-secondary/95 backdrop-blur-md shadow-lg"
         >
           <div className="px-4 py-4 space-y-3">
             {navItems.map((item) => (
@@ -191,14 +179,6 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdhjnALhvqlGHPQt_mxasVbZgfC_bHluIjF4yEahuKYuTFDIg/viewform?pli=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center btn btn-primary mt-4"
-            >
-              Join Now
-            </a>
           </div>
         </motion.div>
       )}

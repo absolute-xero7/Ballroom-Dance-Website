@@ -1,58 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { getUpcomingEvents } from '../data/eventsData';
-import OptimizedImage from './ui/OptimizedImage';
 
 const Events = () => {
+  // Only show real upcoming events
   const upcomingEvents = [
     {
       id: 1,
-      title: "Beginner Waltz Workshop",
-      date: "April 15, 2025",
-      time: "7:00 PM - 8:30 PM",
-      location: "Main Ballroom, Student Union",
-      description: "Perfect for newcomers! Learn the basics of Waltz in this friendly workshop led by our experienced instructors.",
-      image: "/assets/images/events/waltz-workshop.jpg",
-      category: "workshop"
-    },
-    {
-      id: 2,
-      title: "Spring Ball",
-      date: "May 10, 2025",
-      time: "8:00 PM - 11:00 PM",
-      location: "Grand Ballroom, Alumni Center",
-      description: "Our annual formal dance event featuring live music, showcases, and open dancing. Formal attire recommended.",
-      image: "/assets/images/events/spring-ball.jpg",
+      title: "Masquerade Ball",
+      date: "Nov 22, 2024",
+      time: "6:00 PM - 9:00 PM",
+      location: "TBA",
+      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball.",
+      image: "/assets/images/events/masquerade.png",
       category: "social"
-    },
-    {
-      id: 3,
-      title: "Latin Dance Night",
-      date: "April 22, 2025",
-      time: "8:00 PM - 10:00 PM",
-      location: "Dance Studio B, Recreation Center",
-      description: "Spice up your week with Salsa, Cha-Cha, and Bachata! Mini-lesson followed by social dancing.",
-      image: "/assets/images/events/latin-night.jpg",
-      category: "social"
-    },
-    {
-      id: 4,
-      title: "Competition Team Practice",
-      date: "Every Monday",
-      time: "6:00 PM - 8:00 PM",
-      location: "Dance Studio A, Recreation Center",
-      description: "Regular practice session for our competition team. New members welcome to observe!",
-      image: "/assets/images/events/competition-practice.jpg",
-      category: "practice"
     }
   ];
-
-  const [filter, setFilter] = useState('all');
-
-  const filteredEvents = filter === 'all'
-    ? upcomingEvents
-    : upcomingEvents.filter(event => event.category === filter);
 
   return (
     <section id="events" className="py-20 bg-white">
@@ -82,53 +45,13 @@ const Events = () => {
             viewport={{ once: true }}
           >
             Join us at our upcoming workshops, social dances, and special events.
-            From beginners to advanced dancers, there's something for everyone!
+            More events will be announced soon!
           </motion.p>
-
-          {/* Filter buttons */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'all'
-                ? 'bg-primary text-white'
-                : 'bg-secondary text-primary hover:bg-primary/10'
-                }`}
-              onClick={() => setFilter('all')}
-            >
-              All Events
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'workshop'
-                ? 'bg-primary text-white'
-                : 'bg-secondary text-primary hover:bg-primary/10'
-                }`}
-              onClick={() => setFilter('workshop')}
-            >
-              Workshops
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'social'
-                ? 'bg-primary text-white'
-                : 'bg-secondary text-primary hover:bg-primary/10'
-                }`}
-              onClick={() => setFilter('social')}
-            >
-              Social Dances
-            </button>
-            <button
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${filter === 'practice'
-                ? 'bg-primary text-white'
-                : 'bg-secondary text-primary hover:bg-primary/10'
-                }`}
-              onClick={() => setFilter('practice')}
-            >
-              Practice Sessions
-            </button>
-          </div>
         </div>
 
         {/* Events grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {filteredEvents.map((event, index) => (
+          {upcomingEvents.map((event, index) => (
             <motion.div
               key={event.id}
               className="bg-secondary rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all group"
