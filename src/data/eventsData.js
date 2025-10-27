@@ -3,7 +3,7 @@ export const eventsData = [
     {
         id: 1,
         title: "Masquerade Ball",
-        date: "Dec 15, 2025",
+        date: "Dec 17, 2025",
         time: "6:00 PM - 9:00 PM",
         location: "TBA",
         description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Dress in your finest attire and don't forget your mask! The night will feature a mix of ballroom dances and snacks",
