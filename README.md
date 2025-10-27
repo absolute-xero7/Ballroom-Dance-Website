@@ -1,6 +1,6 @@
-# Ballroom Dance Society Website
+# UofT Ballroom Dance Club Website
 
-This is the official website for the Ballroom Dance Society.
+This is the official website for the UofT Ballroom Dance Club at the University of Toronto.
 
 ## Available Scripts
 
