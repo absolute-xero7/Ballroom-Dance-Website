@@ -97,7 +97,7 @@ const Footer = () => {
               Join Now
             </a>
             <p className="text-secondary-dark opacity-70 text-sm mt-4">
-              Weekly classes every Sunday.<br/>
+              Weekly classes every Wednesday.<br/>
               All skill levels welcome!
             </p>
           </div>
