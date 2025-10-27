@@ -18,7 +18,7 @@ const fallSchedule = [
             { date: 'Oct 8', name: 'Cha Cha Cha' },
             { date: 'Oct 15', name: 'Cha Cha Cha' },
             { date: 'Oct 22', name: 'Jive' },
-            { date: 'Oct 29', name: 'Jive' },
+            { date: 'Oct 29', name: 'No Class (Reading Week)' },
         ],
     },
     {
