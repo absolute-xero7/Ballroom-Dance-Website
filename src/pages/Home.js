@@ -65,7 +65,6 @@ const Home = () => {
         <Hero />
       </section>
 
-      {/* ... Home content without playlists button ... */}
     </>
   );
 };

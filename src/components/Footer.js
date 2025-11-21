@@ -57,6 +57,11 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
+              <li>
+                <a href="https://join.photocircleapp.com/2QB34Y9X0N" target="_blank" rel="noopener noreferrer" className="text-secondary-dark opacity-80 hover:text-accent hover:opacity-100 transition-colors">
+                  Photo Gallery
+                </a>
+              </li>
             </ul>
           </div>
 

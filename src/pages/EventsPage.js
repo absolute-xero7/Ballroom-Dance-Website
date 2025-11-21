@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from 'react-router-dom';
 import ClassSchedule from '../components/ClassSchedule';
 import OptimizedImage from '../components/ui/OptimizedImage';
 import { useSearchAndFilter, useDebounce } from '../hooks/useOptimizations';
 
 const EventsPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -15,14 +18,20 @@ const EventsPage = () => {
   const allEvents = [
     {
       id: 1,
-      title: "Masquerade Ball",
-      date: "Nov 22, 2024",
-      time: "6:00 PM - 9:00 PM",
-      location: "TBA",
-      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Dress in your finest attire and don't forget your mask! The night will feature a mix of ballroom dances and snacks",
+      title: "UofT Masquerade Ball 2025",
+      date: "Friday, December 5, 2025",
+      time: "6:30 PM - 11:00 PM",
+      location: "Hart House Building, Toronto",
+      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Dress in your finest attire and don't forget your mask! The night will feature a mix of ballroom dances and refreshments.",
       image: "/assets/images/events/masquerade.png",
       category: "social",
-      price: "$20 Members | $40 Non-members",
+      ticketLink: "https://lu.ma/dtb0z8lt",
+      tickets: [
+        { name: "Early Bird Single", price: "CA$14.99", note: "Available until Nov 29" },
+        { name: "Early Bird Couple", price: "CA$24.99", note: "Available until Nov 29" },
+        { name: "Single (1 ticket)", price: "CA$19.99", note: "" },
+        { name: "Couple (2 tickets)", price: "CA$29.99", note: "" }
+      ],
       registrationRequired: true,
       featured: true,
       imagePosition: "center 15%",
@@ -49,7 +58,23 @@ const EventsPage = () => {
   // Close event details modal
   const closeEventDetails = () => {
     setSelectedEvent(null);
+    // Clear the event query param when closing
+    if (searchParams.has('event')) {
+      searchParams.delete('event');
+      setSearchParams(searchParams);
+    }
   };
+
+  // Auto-open event modal if event query param is present
+  useEffect(() => {
+    const eventId = searchParams.get('event');
+    if (eventId) {
+      const event = allEvents.find(e => e.id === parseInt(eventId));
+      if (event) {
+        setSelectedEvent(event);
+      }
+    }
+  }, [searchParams]);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -270,17 +295,33 @@ const EventsPage = () => {
                           <span className="text-primary">{selectedEvent.location}</span>
                         </div>
 
-                        <div className="flex items-center text-sm bg-secondary rounded-full px-3 py-1.5">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span className="text-primary">{selectedEvent.price}</span>
-                        </div>
                       </div>
 
                       <div className="prose max-w-none text-primary-light mb-6">
                         <p>{selectedEvent.description}</p>
                       </div>
+
+                      {/* Ticket Pricing */}
+                      {selectedEvent.tickets && (
+                        <div className="mb-6">
+                          <h3 className="text-lg font-semibold text-primary mb-3">Ticket Pricing</h3>
+                          <div className="bg-secondary rounded-lg p-4 space-y-3">
+                            {selectedEvent.tickets.map((ticket, index) => (
+                              <div key={index} className="flex justify-between items-center">
+                                <div>
+                                  <span className="font-medium text-primary">{ticket.name}</span>
+                                  {ticket.note && (
+                                    <span className="ml-2 text-xs text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
+                                      {ticket.note}
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="font-bold text-accent">{ticket.price}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       {selectedEvent.instructors && (
                         <div className="mb-6">
@@ -299,9 +340,23 @@ const EventsPage = () => {
                       )}
 
                       <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                        <button className="btn btn-primary flex-1">
-                          {selectedEvent.registrationRequired ? 'Register Now' : 'Add to Calendar'}
-                        </button>
+                        {selectedEvent.ticketLink ? (
+                          <a
+                            href={selectedEvent.ticketLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary flex-1 inline-flex items-center justify-center"
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                            </svg>
+                            Get Tickets
+                          </a>
+                        ) : (
+                          <button className="btn btn-primary flex-1">
+                            {selectedEvent.registrationRequired ? 'Register Now' : 'Add to Calendar'}
+                          </button>
+                        )}
                         <button
                           className="btn btn-outline flex-1"
                           onClick={closeEventDetails}

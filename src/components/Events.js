@@ -7,13 +7,14 @@ const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: "Masquerade Ball",
-      date: "Nov 22, 2024",
-      time: "6:00 PM - 9:00 PM",
-      location: "TBA",
-      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball.",
+      title: "UofT Masquerade Ball 2025",
+      date: "Friday, December 5, 2025",
+      time: "6:30 PM - 11:00 PM",
+      location: "Hart House Building, Toronto",
+      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Early bird tickets starting at CA$14.99!",
       image: "/assets/images/events/masquerade.png",
-      category: "social"
+      category: "social",
+      ticketLink: "https://lu.ma/dtb0z8lt"
     }
   ];
 
@@ -104,6 +105,19 @@ const Events = () => {
                         <span className="text-primary-light">{event.location}</span>
                       </div>
                     </div>
+                    {event.ticketLink && (
+                      <a
+                        href={event.ticketLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-flex items-center justify-center w-full bg-accent hover:bg-accent-dark text-white font-medium px-4 py-2 rounded-md transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                        </svg>
+                        Get Tickets
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
