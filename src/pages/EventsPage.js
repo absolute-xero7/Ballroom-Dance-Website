@@ -54,7 +54,7 @@ const EventsPage = () => {
         setSelectedEvent(event);
       }
     }
-  }, [searchParams, allEvents]);
+  }, [searchParams]);
 
   // Handle ESC key to close modal
   useEffect(() => {
