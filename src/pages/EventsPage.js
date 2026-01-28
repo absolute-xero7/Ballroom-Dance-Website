@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import ClassSchedule from '../components/ClassSchedule';
-import OptimizedImage from '../components/ui/OptimizedImage';
-import { useSearchAndFilter, useDebounce } from '../hooks/useOptimizations';
 
 const EventsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +18,7 @@ const EventsPage = () => {
   // Past events data
   const pastEvents = [];
 
-  const [filter, setFilter] = useState('all');
+  const [filter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -38,14 +36,14 @@ const EventsPage = () => {
   };
 
   // Close event details modal
-  const closeEventDetails = () => {
+  const closeEventDetails = useCallback(() => {
     setSelectedEvent(null);
     // Clear the event query param when closing
     if (searchParams.has('event')) {
       searchParams.delete('event');
       setSearchParams(searchParams);
     }
-  };
+  }, [searchParams, setSearchParams]);
 
   // Auto-open event modal if event query param is present
   useEffect(() => {
@@ -56,7 +54,7 @@ const EventsPage = () => {
         setSelectedEvent(event);
       }
     }
-  }, [searchParams]);
+  }, [searchParams, allEvents]);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -68,7 +66,7 @@ const EventsPage = () => {
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedEvent]);
+  }, [selectedEvent, closeEventDetails]);
 
   return (
     <>
