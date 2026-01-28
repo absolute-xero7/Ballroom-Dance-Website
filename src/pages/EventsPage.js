@@ -4,6 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import ClassSchedule from '../components/ClassSchedule';
 
+// Upcoming events data
+const allEvents = [];
+
+// Past events data
+const pastEvents = [];
+
 const EventsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -11,12 +17,6 @@ const EventsPage = () => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
-
-  // Upcoming events data
-  const allEvents = [];
-
-  // Past events data
-  const pastEvents = [];
 
   const [filter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');

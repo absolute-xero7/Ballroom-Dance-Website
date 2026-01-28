@@ -17,91 +17,7 @@ const GalleryPage = () => {
     { id: 'competitions', name: 'Competitions' }
   ];
 
-  // Gallery images with metadata
-  // This is where you'll add your images
-  const galleryImages = [
-    {
-      id: 1,
-      src: '/assets/images/gallery/performance-1.jpg',
-      alt: 'Annual showcase performance',
-      category: 'performances',
-      featured: true,
-      description: 'Spring Ball 2024 - Waltz performance by our competition team'
-    },
-    {
-      id: 2,
-      src: '/assets/images/gallery/social-1.jpg',
-      alt: 'Friday social dance night',
-      category: 'social',
-      featured: false,
-      description: 'Weekly social dance night - March 2024'
-    },
-    {
-      id: 3,
-      src: '/assets/images/gallery/workshop-1.jpg',
-      alt: 'Tango workshop',
-      category: 'workshops',
-      featured: false,
-      description: 'Intensive Tango workshop with guest instructors'
-    },
-    {
-      id: 4,
-      src: '/assets/images/gallery/competition-1.jpg',
-      alt: 'Regional ballroom competition',
-      category: 'competitions',
-      featured: true,
-      description: 'Our team at the Regional Championships - 2nd place in Latin formation'
-    },
-    {
-      id: 5,
-      src: '/assets/images/gallery/social-2.jpg',
-      alt: 'Valentine\'s Day dance',
-      category: 'social',
-      featured: false,
-      description: 'Valentine\'s Day special dance event'
-    },
-    {
-      id: 6,
-      src: '/assets/images/gallery/performance-2.jpg',
-      alt: 'Showcase finale',
-      category: 'performances',
-      featured: false,
-      description: 'Final performance at our End of Year Showcase'
-    },
-    // Add more images following the same format
-  ];
-
   const [filter, setFilter] = useState('all');
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  // Filter images based on selected category
-  const filteredImages = filter === 'all'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === filter);
-
-  // Open image modal
-  const openModal = (image) => {
-    setSelectedImage(image);
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-  };
-
-  // Close image modal
-  const closeModal = () => {
-    setSelectedImage(null);
-    document.body.style.overflow = 'auto'; // Restore scrolling
-  };
-
-  // Handle ESC key to close modal
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && selectedImage) {
-        closeModal();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
-  }, [selectedImage]);
 
   return (
     <>
@@ -217,39 +133,6 @@ const GalleryPage = () => {
                 </div>
               </motion.div>
             </div>
-
-            {/* Image Modal */}
-            {selectedImage && (
-              <div
-                className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-                onClick={closeModal}
-              >
-                <motion.div
-                  className="relative max-w-4xl w-full"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button
-                    className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors z-10"
-                    onClick={closeModal}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                  <img
-                    src={selectedImage.src}
-                    alt={selectedImage.alt}
-                    className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-                  />
-                  <div className="bg-white p-4 rounded-b-lg">
-                    <p className="text-primary-light">{selectedImage.description}</p>
-                  </div>
-                </motion.div>
-              </div>
-            )}
           </div>
         </section>
       </div>
