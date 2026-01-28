@@ -14,29 +14,11 @@ const EventsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Example events data
-  const allEvents = [
-    {
-      id: 1,
-      title: "UofT Masquerade Ball 2025",
-      date: "Friday, December 5, 2025",
-      time: "6:30 PM - 11:00 PM",
-      location: "Hart House Building, Toronto",
-      description: "Join us for a magical evening of dance, mystery, and elegance at our annual Masquerade Ball. Dress in your finest attire and don't forget your mask! The night will feature a mix of ballroom dances and refreshments.",
-      image: "/assets/images/events/masquerade.png",
-      category: "social",
-      ticketLink: "https://lu.ma/dtb0z8lt",
-      tickets: [
-        { name: "Early Bird Single", price: "CA$14.99", note: "Available until Nov 29" },
-        { name: "Early Bird Couple", price: "CA$24.99", note: "Available until Nov 29" },
-        { name: "Single (1 ticket)", price: "CA$19.99", note: "" },
-        { name: "Couple (2 tickets)", price: "CA$29.99", note: "" }
-      ],
-      registrationRequired: true,
-      featured: true,
-      imagePosition: "center 15%",
-    }
-  ];
+  // Upcoming events data
+  const allEvents = [];
+
+  // Past events data
+  const pastEvents = [];
 
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -161,7 +143,7 @@ const EventsPage = () => {
               </motion.div>
             )}
 
-            {/* Events grid */}
+            {/* Upcoming Events grid */}
             {filteredEvents.length > 0 ? (
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -222,13 +204,103 @@ const EventsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <h2 className="text-4xl font-serif font-bold text-primary mb-4">No Events Found</h2>
+                <h2 className="text-2xl font-serif font-bold text-primary mb-4">No Upcoming Events</h2>
                 <p className="text-lg text-primary-light mb-4">
-                  {searchTerm ? 'Try adjusting your search.' : 'Check back soon for upcoming events!'}
+                  Check back soon for upcoming events! In the meantime, see our class schedule above.
                 </p>
-                <p className="text-primary-light">
-                  In the meantime, check our class schedule above or follow us on social media for updates.
-                </p>
+              </motion.div>
+            )}
+
+            {/* Past Events Section */}
+            {pastEvents.length > 0 && (
+              <motion.div
+                className="mt-20"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-2xl md:text-4xl font-serif font-bold text-primary mb-4">Past Events</h2>
+                  <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                  <p className="max-w-2xl mx-auto text-lg text-primary-light">
+                    Relive the memories from our recent events
+                  </p>
+                </div>
+
+                {pastEvents.map((event) => (
+                  <motion.div
+                    key={event.id}
+                    className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.7 }}
+                  >
+                    {/* Event Image Header */}
+                    <div className="relative h-64 md:h-80">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: event.imagePosition || 'center' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                        <span className="text-sm font-semibold text-white uppercase tracking-wider bg-accent/80 px-3 py-1 rounded mb-3 inline-block">
+                          {event.category}
+                        </span>
+                        <h3 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2">{event.title}</h3>
+                        <p className="text-white/80 text-sm">{event.date} | {event.location}</p>
+                      </div>
+                    </div>
+
+                    {/* Thank You / Recap Content */}
+                    {event.recap && (
+                      <div className="p-6 md:p-10">
+                        <h4 className="text-2xl md:text-3xl font-serif font-bold text-primary mb-6 text-center">
+                          {event.recap.title}
+                        </h4>
+
+                        <p className="text-primary-light text-lg leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                          {event.recap.message}
+                        </p>
+
+                        {/* Event Highlights */}
+                        <div className="bg-secondary rounded-xl p-6 mb-8">
+                          <h5 className="text-lg font-semibold text-primary mb-4 text-center">Event Highlights</h5>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {event.recap.highlights.map((highlight, index) => (
+                              <div key={index} className="flex items-center gap-3">
+                                <svg className="w-5 h-5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                                <span className="text-primary-light">{highlight}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Photo Gallery Link */}
+                        <div className="text-center">
+                          <a
+                            href={event.recap.galleryLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                          >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            View Event Photos
+                          </a>
+                          <p className="text-primary-light text-sm mt-4">
+                            View, download, and share photos from the event on PhotoCircle
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
               </motion.div>
             )}
 

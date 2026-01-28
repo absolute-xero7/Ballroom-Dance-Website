@@ -71,7 +71,7 @@ const Hero = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur-2xl"></div>
               <OptimizedImage
-                src="/assets/images/dancers.jpg"
+                src="/assets/images/main.jpeg"
                 alt="Ballroom dancers in elegant pose"
                 className="relative max-w-full h-auto rounded-2xl shadow-2xl ring-1 ring-primary/10"
                 loading="eager"

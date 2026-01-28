@@ -8,9 +8,19 @@ const AboutPage = () => {
     }, []);
 
     const boardMembers = [
-        { name: 'Roberta Chira', position: 'President', email: 'roberta.chira@mail.utoronto.ca', image: '/assets/images/team/roberta.jpg', imagePosition: 'center 30%' },
-        { name: 'Akshita Rajpal', position: 'Communication Liaison', email: 'akshita.rajpal@mail.utoronto.ca', image: '/assets/images/team/akshita.jpg', imagePosition: 'center 40%' },
-        { name: 'Prahlad Ranjit', position: 'Administrative Director', email: 'prahlad.ranjit@mail.utoronto.ca', image: '/assets/images/team/prahlad.jpg', imagePosition: 'center 35%' }
+        { name: 'Roberta Chira', position: 'President & Primary Instructor', image: '/assets/images/team/roberta-chira.png', imagePosition: 'center 30%' },
+        { name: 'Kaan Acgay', position: 'Primary Instructor', image: '/assets/images/team/kaan-acgay.png', imagePosition: 'center 30%' },
+        { name: 'Claire Stobo', position: 'VP of Events', image: '/assets/images/team/claire-stobo.png', imagePosition: 'center 30%' },
+        { name: 'Mehtab Sangha', position: 'VP of Finance', image: '/assets/images/team/mehtab-sangha.png', imagePosition: 'center 30%' },
+        { name: 'Akshita Rajpal', position: 'VP of Marketing & Communications', image: '/assets/images/team/akshita-rajpal.png', imagePosition: 'center 30%' },
+        { name: 'Prahlad Ranjit', position: 'VP of IT Operations', image: '/assets/images/team/prahlad-ranjit.png', imagePosition: 'center 30%' },
+        { name: 'Mohammad Talha Khan', position: 'Event Director', image: '/assets/images/team/mohammad-talha-khan.png', imagePosition: 'center 30%' },
+        { name: 'Aditya Mukherjee', position: 'Finance Director', image: '/assets/images/team/aditya-mukherjee.png', imagePosition: 'center 30%' },
+        { name: 'Chloe Ford', position: 'Marketing Director', image: '/assets/images/team/chloe-ford.png', imagePosition: 'center 30%' },
+        { name: 'Hector Bligh', position: 'Marketing Director', image: '/assets/images/team/hector-bligh.png', imagePosition: 'center 30%' },
+        { name: 'Nav Singh', position: 'Communication Liaison', image: '/assets/images/team/nav-singh.png', imagePosition: 'center 30%' },
+        { name: 'Amora Krishna', position: 'Associate Instructor', image: '/assets/images/team/amora-krishna.png', imagePosition: 'center 30%' },
+        { name: 'Tugra Canbaz', position: 'Associate Instructor', image: '/assets/images/team/tugra-canbaz.png', imagePosition: 'center 30%' }
     ];
 
     return (
@@ -56,7 +66,7 @@ const AboutPage = () => {
                                 transition={{ duration: 0.5, delay: 0.4 }}
                             >
                                 <a
-                                    href="https://sop.utoronto.ca/group/ballroom-dance-society/"
+                                    href="https://sop.utoronto.ca/group/copy-of-ballroom-dance-club-2/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn-primary px-8 py-4 text-base font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 inline-flex items-center gap-2"
@@ -107,18 +117,20 @@ const AboutPage = () => {
                                                     {member.position}
                                                 </p>
                                             </div>
-                                            <div className="mt-auto">
-                                                <a
-                                                    href={`mailto:${member.email}`}
-                                                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-secondary hover:bg-accent/10 text-sm text-primary-light hover:text-accent transition-all group/email cursor-pointer border border-transparent hover:border-accent/20"
-                                                    title={member.email}
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                                    </svg>
-                                                    <span className="group-hover/email:font-semibold">Contact</span>
-                                                </a>
-                                            </div>
+                                            {member.email && (
+                                                <div className="mt-auto">
+                                                    <a
+                                                        href={`mailto:${member.email}`}
+                                                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-secondary hover:bg-accent/10 text-sm text-primary-light hover:text-accent transition-all group/email cursor-pointer border border-transparent hover:border-accent/20"
+                                                        title={member.email}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                        </svg>
+                                                        <span className="group-hover/email:font-semibold">Contact</span>
+                                                    </a>
+                                                </div>
+                                            )}
                                         </div>
                                     </motion.div>
                                 ))}
